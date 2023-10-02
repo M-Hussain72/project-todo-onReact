@@ -1,13 +1,13 @@
 import { useState } from "react";
 
 const Item = (prop) => {
-  const [visible, setvisible] = useState(true);
+  const [visible, setEditMode] = useState(true);
   const [content, setcontent] = useState("");
   const { todo, id, removeTodo, editSavebtn } = prop;
   
 
   const handleSavebtn = (id, content) => {
-    setvisible(true);
+    setEditMode(true);
     editSavebtn(id, content);
   };
 
@@ -29,7 +29,7 @@ const Item = (prop) => {
           </button>
           <button
             onClick={() => {
-              setvisible(false);
+              setEditMode(false);
             }}
             name="edit"
           >
