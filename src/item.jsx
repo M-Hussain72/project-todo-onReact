@@ -2,9 +2,8 @@ import { useState } from "react";
 
 const Item = (prop) => {
   const [visible, setEditMode] = useState(true);
-  const [content, setcontent] = useState("");
+  const [editcontent, setEditcontent] = useState("");
   const { todo, id, removeTodo, editSavebtn } = prop;
-  
 
   const handleSavebtn = (id, content) => {
     setEditMode(true);
@@ -41,13 +40,13 @@ const Item = (prop) => {
           <input
             type="text"
             onChange={(e) => {
-              setcontent(e.target.value);
+              setEditcontent(e.target.value);
             }}
-            value={content}
+            value={editcontent}
           />
           <button
             onClick={() => {
-              handleSavebtn(id, content);
+              handleSavebtn(id, editcontent);
             }}
           >
             Save
