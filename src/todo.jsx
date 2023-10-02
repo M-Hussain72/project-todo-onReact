@@ -1,36 +1,34 @@
 import Item from "./item";
-import TodoAddBtn from "./todoAddBtn"
+import TodoAddBtn from "./todoAddBtn";
 import { useState } from "react";
 import uniqid from "uniqid";
 
 const Todo = () => {
-  const [list, setlist] = useState([]);
+  const [todolist, setTodolist] = useState([]);
 
-  
   const removeTodo = (todoid) => {
-    const newlist = list.filter((item) => item.id != todoid);
-    setlist(newlist);
+    const newlist = todolist.filter((item) => item.id != todoid);
+    setTodolist(newlist);
   };
 
   const editSavebtn = (todoid, content) => {
-    let newlist = [...list];
+    let newlist = [...todolist];
     newlist.map((item) => {
       if (item.id === todoid) {
         item.content = content;
       }
     });
-    setlist(newlist);
+    setTodolist(newlist);
   };
 
   const addItems = (todoContent) => {
-    const arr = [...list];
+    const arr = [...todolist];
     if (todoContent.length > 0) {
       const id = uniqid();
-      arr.push({id:id,content:todoContent});
+      arr.push({ id: id, content: todoContent });
     } else alert("ToDO is empty!");
 
-    setlist(arr);
-  
+    setTodolist(arr);
   };
 
   return (
@@ -38,8 +36,8 @@ const Todo = () => {
       <from>
         <h1>ToDO-List</h1>
         <div className="divideline"></div>
-        {list.length > 0 ? (
-          list.map((item, index) => (
+        {todolist.length > 0 ? (
+          todolist.map((item, index) => (
             <Item
               key={index}
               todo={item.content}
@@ -51,7 +49,7 @@ const Todo = () => {
         ) : (
           <div className="emptyToDo">No ToDo Here</div>
         )}
-        <TodoAddBtn addItems={addItems}/>
+        <TodoAddBtn addItems={addItems} />
       </from>
     </div>
   );
